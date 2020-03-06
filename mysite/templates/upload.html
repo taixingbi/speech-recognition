@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- <h3>Audio Analysis</h3> -->
+  
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document">
+    <button type="submit">RUN</button>
+  </form>
+
+  <br>
+  
+
+  {% if fileNotExist %}
+    Audio not Found
+  {% endif %}
+
+  {% if slice_probabilities %}
+    <p> PHQ8: {{ PHQ8 }}</p>
+    <p> slice_probabilities: {{ slice_probabilities }}</p>
+    <p> response_time: {{ response_time }}</p>
+    <p> threshold: {{ threshold }}</p>
+  {% endif %}
+  
+{% endblock %}
